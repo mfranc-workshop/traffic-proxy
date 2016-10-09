@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-service",
+  "version": "0.0.1",
+  "description": "Simple service to create simple micro-service",
+  "main": "app.js",
+  "scripts": {
+	"start": "node app.js",
+    "test": "mocha tests/*.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.1",
+    "express": "~4.11.1"
+  },
+  "devDependencies": {
+    "assert": "1.3.0",
+    "chai": "1.10.0",
+    "mocha": "2.1.0",
+    "supertest": "^2.0.0"
+  },
+  "author": "Michal Franc",
+  "license": "MIT"
+}

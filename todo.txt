@@ -1,0 +1,21 @@
+- app that exposes status
+- docker that creates an app and attaches it to some port
+	- proper docker tests etc
+	- docker executes unit tests etc
+
+- simple frontend app that communicates with docker boxes and creates a list
+  of services
+
+
+LATER:
+- nice graph based visualisaton of all the services
+- support for Java
+- support for Elixir
+- support for C#
+- support for F#
+
+- app that gests github repo clones and builds docker services
+
+
+LATER LATER:
+- service proxy to catch messages and build a graph
