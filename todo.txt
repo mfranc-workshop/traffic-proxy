@@ -21,3 +21,4 @@ LATER:
 
 LATER LATER:
 - service proxy to catch messages and build a graph
+- https://docs.docker.com/compose/
