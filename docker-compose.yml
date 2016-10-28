@@ -1,0 +1,9 @@
+test:
+  build: .
+  entrypoint: npm run test
+
+app:
+  build: .
+  ports:
+    - "8000:8000"
+  entrypoint: npm run start
