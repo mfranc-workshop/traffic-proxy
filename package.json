@@ -9,6 +9,7 @@
     "testdebug": "mocha debug tests/*.js --opts tests/mocha.opts"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "~4.11.1"
   },
