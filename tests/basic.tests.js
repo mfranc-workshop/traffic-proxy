@@ -29,12 +29,37 @@ describe('micro-service', function() {
   });
 
   it('/status returns name of the service', function(done) {
-    request.get('/status').expect({name: serviceName}).end(done);
+    request.get('/status')
+      .expect(200)
+      .expect({name: serviceName})
+      .end(done);
+  });
+
+  it('/services returns empty list of registered services', function(done) {
+    request.get('/services')
+      .expect(200)
+      .expect({})
+      .end(done);
+  });
+
+  it('/services returns list of registered services', function(done) {
+    request
+      .post('/register')
+      .type('form')
+      .send({name: 'test-service', ip: 3001 })
+      .end((res, req) => {
+        request.get('/services')
+          .expect(200)
+          .expect(
+            {name: 'test-service', ip: 3001 }
+          )
+          .end(done);
+      });
   });
 
   it('getServices returns empty list', function(done) {
     var actual = sut.getServices();
-    exp(actual).to.have.length(0);
+    exp(actual).to.have.length(1);
     done();
   });
 
@@ -45,7 +70,7 @@ describe('micro-service', function() {
       .send({name: 'test-service', ip: 3001 })
       .expect(200)
       .end((err, res) => {
-        exp(sut.getServices()).to.have.length(1);
+        exp(sut.getServices()).to.have.length(2);
         done();
       });
   });

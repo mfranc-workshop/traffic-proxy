@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha tests/*.js --opts tests/mocha.opts",
-    "testdebug": "mocha debug tests/*.js --opts tests/mocha.opts"
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -16,9 +15,13 @@
   "devDependencies": {
     "assert": "1.3.0",
     "chai": "1.10.0",
+    "jest-cli": "^17.0.0",
     "mocha": "2.1.0",
     "mocha-clean": "^1.0.0",
     "supertest": "^2.0.0"
+  },
+  "jest": {
+    "testRegex": "tests"
   },
   "author": "Michal Franc",
   "license": "MIT"

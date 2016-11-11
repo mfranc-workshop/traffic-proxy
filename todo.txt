@@ -1,4 +1,3 @@
-- ap that exposes status
 - docker that creates an app and attaches it to some port
 	- proper docker tests etc
 	- docker executes unit tests etc
