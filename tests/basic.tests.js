@@ -1,8 +1,11 @@
-var exp = require('chai').expect;
 var supertest = require('supertest');
 var serviceLib = require('../service'), service = serviceLib.service;
 
+jest.unmock('supertest');
+
 var serviceName = 'basic-service-test';
+
+var now = (done) => (err, res) => err ? done.fail(err) : done();
 
 var sut = new service(serviceName, []);
 
@@ -20,58 +23,45 @@ describe('micro-service', function() {
   });
 
   it('returns 200 on /status', function(done) {
-    request.get('/status').expect(200, done);
+    request.get('/status')
+    .expect(200)
+    .end(now(done));
   });
 
   it('/status returns json', function(done) {
     request.get('/status')
-    .expect('Content-Type', /application\/json/).end(done);
+    .expect('Content-Type', /application\/json/)
+    .end(now(done));
   });
 
   it('/status returns name of the service', function(done) {
     request.get('/status')
-      .expect(200)
       .expect({name: serviceName})
-      .end(done);
+      .end(now(done));
   });
 
   it('/services returns empty list of registered services', function(done) {
     request.get('/services')
-      .expect(200)
-      .expect({})
-      .end(done);
+      .expect([])
+      .end(now(done));
   });
 
   it('/services returns list of registered services', function(done) {
     request
       .post('/register')
-      .type('form')
+      .type('json')
       .send({name: 'test-service', ip: 3001 })
-      .end((res, req) => {
-        request.get('/services')
-          .expect(200)
-          .expect(
-            {name: 'test-service', ip: 3001 }
-          )
-          .end(done);
-      });
-  });
-
-  it('getServices returns empty list', function(done) {
-    var actual = sut.getServices();
-    exp(actual).to.have.length(1);
-    done();
-  });
-
-  it('/register adds service to list and returns 200', function(done) {
-    request
-      .post('/register')
-      .type('form')
-      .send({name: 'test-service', ip: 3001 })
-      .expect(200)
-      .end((err, res) => {
-        exp(sut.getServices()).to.have.length(2);
-        done();
+      .end(() => {
+        request
+          .post('/register')
+          .type('json')
+          .send({name: 'test-service1', ip: 3002 })
+          .end(() => {
+            request.get('/services')
+              .expect([{name: 'test-service', ip: 3001 },
+                       {name: 'test-service1', ip: 3002 }])
+              .end(now(done));
+          })
       });
   });
 });

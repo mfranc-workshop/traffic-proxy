@@ -16,10 +16,17 @@ exports.service = function(serviceName, db) {
 			});
 	});
 
+	app.get('/services', function(req, res) {
+	  res
+		.status(200)
+		.json(db);
+	});
+
 	app.post('/register', function(req, res) {
     var body = req.body;
     db.push(body);
-	  res.status(200).send();
+	  res.status(200)
+    .send();
 	});
 
   this.start = function(port) {

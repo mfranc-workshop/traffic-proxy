@@ -21,7 +21,8 @@
     "supertest": "^2.0.0"
   },
   "jest": {
-    "testRegex": "tests"
+    "testRegex": "tests",
+    "testEnvironment": "node"
   },
   "author": "Michal Franc",
   "license": "MIT"
