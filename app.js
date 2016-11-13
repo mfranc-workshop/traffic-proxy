@@ -2,6 +2,6 @@ var serviceLib = require('./service'), service = serviceLib.service;
 
 var db = [];
 
-var app = new service('app-test');
+var app = new service('traffic-proxy', db);
 
-app.start(8000, db);
+app.start(8100);

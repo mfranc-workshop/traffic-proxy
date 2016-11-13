@@ -1,8 +1,6 @@
 var supertest = require('supertest');
 var serviceLib = require('../service'), service = serviceLib.service;
 
-jest.unmock('supertest');
-
 var serviceName = 'basic-service-test';
 
 var now = (done) => (err, res) => err ? done.fail(err) : done();
@@ -11,11 +9,11 @@ var sut = new service(serviceName, []);
 
 describe('micro-service', function() {
 
-  var host = 'http://localhost:8000';
+  var host = 'http://localhost:8100';
   var request = supertest(host);
 
   beforeEach(function() {
-    sut.start(8000);
+    sut.start(8100);
   });
   
   afterEach(function() {
