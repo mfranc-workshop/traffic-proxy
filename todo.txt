@@ -2,8 +2,13 @@
 	- proper docker tests etc
 	- docker executes unit tests etc
 
-- simple frontend app that communicates with docker boxes and creates a list
-  of services
+- simple cluster of services - 2 that do register themselves with the traffic-proxy
+
+- simple frontend app to read the registered services
+- expand traffic-proxy to enable logging of traffic ( each service will have to send log of request to traffic-proxy )
+
+- rename traffic-proxy to service registry
+- service registry need to pool the services and check their status from time to time
 
 - simple docker exposed DB
 - script to start all the infrastracture items
